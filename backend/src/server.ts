@@ -1,4 +1,5 @@
 import express from "express";
+import { pool } from "./database";
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.get("/", (_req, res) => {
 });
 
 
-const PORT = 3000;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
