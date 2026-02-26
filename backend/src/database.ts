@@ -6,3 +6,5 @@ export const pool = new Pool({
     ? { rejectUnauthorized: false }
     : false
 });
+
+//тут уже можна нічого не писати
