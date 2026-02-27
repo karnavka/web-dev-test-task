@@ -5,11 +5,11 @@
 
     background:
         radial-gradient(
-            circle at 25% 70%,
+            circle at 25% 75%,
             var(--color-bg-accent) 0%,
             var(--color-bg-accent) 2%,
             var(--color-bg-accent) 5%,
-            transparent 70%
+            transparent 65%
         ),
         linear-gradient(
             to bottom,
@@ -25,14 +25,15 @@
 
 .pageHeader {
     text-align: center;
-    margin-top: 8vh;
+    margin-top: 7vh;
     margin-bottom: 4vh;
 }
 
 .pageHeader__title {
-    margin: 0 0 1rem 0;
-    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
     font-size: var(--font-size-title);
+    letter-spacing: 0.03em;
 
     background: linear-gradient(
         90deg,
@@ -48,6 +49,7 @@
 }
 
 .pageHeader__subtitle {
+    margin: 0;
     font-size: var(--font-size-subtitle);
     color: var(--color-text-secondary);
 }
@@ -60,7 +62,7 @@
 }
 
 .pageActions__addButton{
-    width: min(560px, 92vw);
+    width: min(420px, 92vw);
     height: 3.5rem;
     border-radius: 999px;
 
