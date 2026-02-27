@@ -1,0 +1,12 @@
+.orderModal__input {
+    width: 100%;
+}
+
+.orderModal .ant-input-number:hover {
+  border-color: var(--color-primary);
+}
+
+.orderModal .ant-input-number-focused {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary-hover);
+}

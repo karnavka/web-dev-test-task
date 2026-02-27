@@ -1,0 +1,57 @@
+import { useState } from "react";
+import { AddOrderAction } from "../components/AddOrderAction";
+import { AddOrderModal } from "../components/ManualOrderModal";
+import type { CreateOrderDto } from "../types/order";
+import "../styles/OrdersPage.css";
+import "../styles/AddOrderModal.css";
+
+
+export function OrdersPage() {
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleOpenModal = () => setIsCreateModalOpen(true);
+
+    const handleCreate = async (values: CreateOrderDto) => {
+        setIsSubmitting(true);
+        try {
+            // await createOrder(values);
+            console.log(values);
+            setIsCreateModalOpen(false);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <>
+            <div className="appBackground" />
+            <div className="pageContainer">
+                {/* Header */}
+                <header className="pageHeader">
+                    <h1 className="pageHeader__title">Instant Wellness Kits</h1>
+                    <p className="pageHeader__subtitle">Save your day</p>
+                </header>
+
+                {/* Actions */}
+                <div className="pageActions">
+                    <AddOrderAction onAdd={handleOpenModal} className="pageActions__addButton">
+                        Add order manually
+                    </AddOrderAction>
+                    {/* <CsvImportAction uploading={false} onUpload={(file) => {}} /> */}
+                </div>
+
+                
+                <AddOrderModal
+                    open={isCreateModalOpen}
+                    onClose={() => setIsCreateModalOpen(false)}
+                    onCreate={handleCreate}
+                    submitting={isSubmitting}
+                />
+
+                {/* Orders Table */}
+                {/* <div className="pageOrderTable"> <OrdersTable />  </div>  */}
+            </div>
+        </>
+    );
+}

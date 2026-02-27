@@ -1,0 +1,98 @@
+.appBackground {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 25% 70%,
+            var(--color-bg-accent) 0%,
+            var(--color-bg-accent) 2%,
+            var(--color-bg-accent) 5%,
+            transparent 70%
+        ),
+        linear-gradient(
+            to bottom,
+            var(--color-bg-primary) 10%,
+            var(--color-bg-light) 100%
+        );
+}
+
+.pageContainer {
+    position: relative;
+    z-index: 1;
+}
+
+.pageHeader {
+    text-align: center;
+    margin-top: 8vh;
+    margin-bottom: 4vh;
+}
+
+.pageHeader__title {
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+    font-size: var(--font-size-title);
+
+    background: linear-gradient(
+        90deg,
+        var(--color-text-gradient) 0%,
+        var(--color-text-primary) 50%,
+        var(--color-text-gradient) 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.pageHeader__subtitle {
+    font-size: var(--font-size-subtitle);
+    color: var(--color-text-secondary);
+}
+
+.pageActions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.pageActions__addButton{
+    width: min(560px, 92vw);
+    height: 3.5rem;
+    border-radius: 999px;
+
+    background: var(--color-surface);
+    color: var(--color-primary);
+
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    border: 1px solid var(--color-border);
+    box-shadow: 0 12px 28px var(--color-shadow);
+
+    cursor: pointer;
+    transition: all 140ms ease;
+}
+
+.pageActions__addButton:hover{
+    background: var(--color-surface-hover);
+    color: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 36px var(--color-shadow);
+}
+
+.pageActions__addButton:active{
+    transform: translateY(0);
+    color: var(--color-primary-hover);
+    box-shadow: 0 8px 18px var(--color-shadow);
+}
+
+.pageActions__addButton:focus-visible{
+    outline: 3px solid var(--color-primary-hover);
+    outline-offset: 3px;
+}
