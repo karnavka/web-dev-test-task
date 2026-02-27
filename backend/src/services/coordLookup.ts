@@ -1,13 +1,11 @@
-type CountyCity = { county: string; city: string };
-
 type CensusGeoResponse = {
     result?: {
-        addressMatches?: Array<{
-            addressComponents?: { city?: string; state?: string };
-            geographies?: Record<string, Array<{ NAME?: string }>>;
-        }>;
+        geographies?: Record<string, Array<Record<string, any>>>;
+        input?: any;
     };
 };
+
+type CountyCity = { county: string; city: string };
 
 export async function getCountyCityByLatLonNY(lat: number, lon: number, signal?: AbortSignal): Promise<CountyCity> {
     const url = new URL("https://geocoding.geo.census.gov/geocoder/geographies/coordinates");
@@ -18,22 +16,28 @@ export async function getCountyCityByLatLonNY(lat: number, lon: number, signal?:
     url.searchParams.set("format", "json");
 
     const r = await fetch(url.toString(), { signal });
+    console.log(url.toString());
     //ОБРОБКА ПОМИЛОК ПОТІМ
     if (!r.ok) throw new Error(`Census geocoder failed: HTTP ${r.status}`);
 
     const data = (await r.json()) as CensusGeoResponse;
 
-    const match = data.result?.addressMatches?.[0];
-    const state = match?.addressComponents?.state ?? null;
-    //ОБРОБКА ПОМИЛОК ПОТІМ
-    /* if (state !== "NY") {
-       throw new Error(`Not NY (state=${state ?? "null"})`);
-     }*/
+    const geos = data.result?.geographies;
+    if (!geos) throw new Error("No geographies in Census response");
 
-    let county = match?.geographies?.["Counties"]?.[0]?.NAME?.trim();
-    //ОБРОБКА ПОМИЛОК ПОТІМ
-    if (!county) county = "Unknown County";
+    // state перевірка (NY = 36, або STUSAB = "NY")
+    const st = geos["States"]?.[0];
+    const stusab = st?.STUSAB ?? null;
+    if (stusab !== "NY") throw new Error(`Not NY (STUSAB=${stusab ?? "null"})`);
 
-    const city = (match?.addressComponents?.city ?? "").trim();
+    const county = (geos["Counties"]?.[0]?.NAME as string | undefined)?.trim();
+    if (!county) throw new Error("County not found");
+
+    // Для “city” краще брати Incorporated Places (якщо є), інакше county subdivision (borough/town)
+    const city =
+        ((geos["Incorporated Places"]?.[0]?.NAME as string | undefined)?.trim() ??
+            (geos["County Subdivisions"]?.[0]?.NAME as string | undefined)?.trim() ??
+            "");
+
     return { county, city };
 }

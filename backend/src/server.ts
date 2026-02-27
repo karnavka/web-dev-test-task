@@ -17,8 +17,13 @@ app.post("/orders", (req, res) => {
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
-app.listen(PORT, () => {
-  console.log(getCountyCityByLatLonNY(35.64453, 87.37669).then(console.log).catch(console.error));
+app.listen(PORT, async () => {
+  try {
+    const result = await getCountyCityByLatLonNY(43.306126, -74.887929);
+    console.log(result);
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 //це файл для обробки http запитів
