@@ -1,12 +1,16 @@
 import express from "express";
 import { pool } from "./database";
+import { getCountyCityByLatLonNY } from "./services/coordLookup";
+import { get } from "node:http";
 
 const app = express();
 
 app.use(express.json());
 
 //це просто тест не сприймати серйозно
-app.get("/", (_req, res) => {
+
+app.post("/orders", (req, res) => {
+
   res.json({ message: "API works " });
 });
 
@@ -14,7 +18,7 @@ app.get("/", (_req, res) => {
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server started on http://localhost:${PORT}`);
+  console.log(getCountyCityByLatLonNY(35.64453, 87.37669).then(console.log).catch(console.error));
 });
 
 //це файл для обробки http запитів
