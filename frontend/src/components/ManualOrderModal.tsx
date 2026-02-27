@@ -15,6 +15,7 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
         try {
             const values = await form.validateFields();
             await onCreate(values);
+            form.resetFields();
         } catch {
             // validation errors
         }
@@ -29,7 +30,6 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
             onOk={handleSubmit}
             okText="Create order"
             confirmLoading={submitting}
-            destroyOnClose
         >
             <Form layout="vertical" form={form} className="orderModal__form">
                 <Form.Item
