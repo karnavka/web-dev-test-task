@@ -1,7 +1,7 @@
 :root {
     /* Brand */
-    --color-primary: #ff2a3b;
-    --color-primary-hover: #b82330;
+    --color-primary: rgb(233, 41, 76);
+    --color-primary-hover: rgb(189, 29, 58);
 
     /* Backgrounds */
     --color-bg-primary: rgb(11, 11, 21);

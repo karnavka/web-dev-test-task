@@ -7,7 +7,7 @@ function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#ff2a3b",
+          colorPrimary: "rgb(233, 41, 76)",
           colorPrimaryHover: "var(--color-primary-hover)",
           colorPrimaryActive: "var(--color-primary-hover)",
           colorTextLightSolid: "var(--color-text-primary)",
