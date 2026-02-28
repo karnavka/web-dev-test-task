@@ -57,7 +57,6 @@ export function OrdersPage() {
                     <AddOrderAction onAdd={handleOpenModal} className="pageActions__addButton">
                         Add order manually
                     </AddOrderAction>
-                    {/* <CsvImportAction uploading={false} onUpload={(file) => {}} /> */}
                 </div>
 
                 
@@ -71,8 +70,6 @@ export function OrdersPage() {
                 {/*File Uploader*/}
                 <CVSUploadAction onFileSelect={handleRefresh} />
                 <DataTable refreshKey={refreshKey} />
-                
-                {/* <div className="pageOrderTable"> <OrdersTable />  </div>  */}
             </div>
         </>
     );

@@ -19,7 +19,7 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
     const [form] = Form.useForm<CreateOrderDto>();
 
     const handleSubmit = async () => {
-        const values = await form.validateFields(); // якщо не валідно — кинеться, і antd сам підсвітить поля
+        const values = await form.validateFields();
         await onCreate(values);
         form.resetFields();
     };
