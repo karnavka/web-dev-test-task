@@ -9,7 +9,11 @@ import { pool } from "./db/database";
 import cors from "cors"
 import { getAllOrders } from "./services/orders.service";
 import { importOrdersFromCsvBuffer } from "./services/ordersCsv.service";
-import { pool } from "./database";
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+});
+
 dotenv.config();
 const app = express();
 app.use(express.json());

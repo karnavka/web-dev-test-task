@@ -18,7 +18,7 @@ export function CVSUploadAction({ onFileSelect }: CsvImportProps) {
         const formData = new FormData()
         formData.append("file", file)
 
-        const response = await fetch("http://localhost:3000/upload", {
+        const response = await fetch("http://localhost:3000/orders/import-csv", {
           method: "POST",
           body: formData,
         })

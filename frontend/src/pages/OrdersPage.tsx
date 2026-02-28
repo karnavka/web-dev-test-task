@@ -4,7 +4,7 @@ import { message } from "antd";
 import { AddOrderAction } from "../components/AddOrderAction";
 import { AddOrderModal } from "../components/ManualOrderModal";
 import { CVSUploadAction } from "../components/CVSUploadAction";
-import { DataTable } from "../components/DataTable"
+import { DataTable } from "../components/DataTable";
 
 import type { CreateOrderDto } from "../types/order";
 import { createOrder } from "../services/orders";
@@ -24,7 +24,7 @@ export function OrdersPage() {
     const handleCreate = async (values: CreateOrderDto) => {
         setIsSubmitting(true);
         try {
-            const created = await createOrder(values);
+            await createOrder(values);
             msgApi.success("Order created");
             setIsCreateModalOpen(false);
             handleRefresh();
@@ -40,6 +40,10 @@ export function OrdersPage() {
     const handleRefresh = () => {
         setRefreshKey(prev => prev + 1)
     }
+
+    const handleCsvImport = () => {
+        handleRefresh();
+    };
 
     return (
         <>
@@ -68,7 +72,7 @@ export function OrdersPage() {
                 />
 
                 {/*File Uploader*/}
-                <CVSUploadAction onFileSelect={handleRefresh} />
+                <CVSUploadAction onFileSelect={handleCsvImport} />
                 <DataTable refreshKey={refreshKey} />
             </div>
         </>
