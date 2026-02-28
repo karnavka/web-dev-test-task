@@ -1,6 +1,7 @@
 import express from "express";
 import { pool } from "./database";
 import { getCountyCityByLatLonNY } from "./services/coordLookup";
+import { createOrderFromLatLon } from "./services/orders.service";
 import { initDb } from "./database";
 
 const app = express();
@@ -9,9 +10,21 @@ app.use(express.json());
 
 //це просто тест не сприймати серйозно
 
-app.post("/orders", (req, res) => {
 
-  res.json({ message: "API works " });
+
+app.post("/orders", async (req, res) => {
+  try {
+    const { subtotal, latitude, longitude } = req.body ?? {};
+    if (typeof subtotal !== "number" || typeof latitude !== "number" || typeof longitude !== "number") {
+      return res.status(400).json({ error: "Expected { subtotal:number, latitude:number, longitude:number }" });
+    }
+
+    const created = await createOrderFromLatLon({ subtotal, latitude, longitude});
+    res.status(201).json(created);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: (e as Error).message });
+  }
 });
 
 
