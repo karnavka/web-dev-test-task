@@ -43,7 +43,7 @@ const columns: ColumnsType<Order> = [
   },
 ]
 
-export function DataTable() {
+export function DataTable({ refreshKey }: { refreshKey: number }) {
   const [orders, setOrders] = useState<Order[]>([])
   const [loading, setLoading] = useState(false)
   
@@ -62,7 +62,7 @@ export function DataTable() {
     }
 
     fetchOrders()
-  }, [])
+  }, [refreshKey])
 
 
   return (
@@ -72,6 +72,7 @@ export function DataTable() {
       dataSource={orders}
       pagination={{ pageSize: 7 }}
       rowKey="id"
+      loading={loading}
     />
     </div>
   )

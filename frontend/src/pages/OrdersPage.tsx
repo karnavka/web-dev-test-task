@@ -25,6 +25,12 @@ export function OrdersPage() {
         }
     };
 
+    const [refreshKey, setRefreshKey] = useState(0)
+
+    const handleRefresh = () => {
+        setRefreshKey(prev => prev + 1)
+    }
+
     return (
         <>
             <div className="appBackground" />
@@ -52,14 +58,8 @@ export function OrdersPage() {
                 />
 
                 {/*File Uploader*/}
-                <CVSUploadAction
-                    onFileSelect={(file) => {
-                        console.log("Selected file: ", file)
-                    }}
-                />    
-
-                
-                <DataTable />
+                <CVSUploadAction onFileSelect={handleRefresh} />
+                <DataTable refreshKey={refreshKey} />
                 
                 {/* <div className="pageOrderTable"> <OrdersTable />  </div>  */}
             </div>
