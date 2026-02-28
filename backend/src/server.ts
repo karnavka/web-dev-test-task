@@ -21,11 +21,13 @@ app.use(cors());
 
 app.delete("/orders", async (_req, res) => {
   try {
-    await pool.query("TRUNCATE TABLE orders RESTART IDENTITY");
-    return res.status(200).json({ message: "All orders cleared and IDs reset" });
+    await pool.query("DELETE FROM orders");
+    return res.status(200).json({ message: "All orders cleared" });
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ error: e instanceof Error ? e.message : "Unknown error" });
+    return res.status(500).json({
+      error: e instanceof Error ? e.message : "Unknown error",
+    });
   }
 });
 
