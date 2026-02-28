@@ -1,16 +1,16 @@
 
 import express from "express";
+import multer from "multer";
 import { getCountyCityByLatLonNY } from "./services/coordLookup";
 import { createOrderFromLatLon } from "./services/orders.service";
 import { initDb } from "./db/database";
-import { pool } from "./db/database";
 import dotenv from "dotenv";
 import { getAllOrders } from "./services/orders.service";
+import { importOrdersFromCsvBuffer } from "./services/ordersCsv.service";
 dotenv.config();
-
 const app = express();
-
 app.use(express.json());
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.get("/health", (_req, res) => {
   console.log("HEALTH ROUTE HIT");
@@ -42,6 +42,24 @@ app.post("/orders", async (req, res) => {
         error: "Expected { subtotal:number, latitude:number, longitude:number }",
       });
     }
+
+    app.post("/orders/import-csv", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({
+        error: 'CSV file is required in form-data field "file"',
+      });
+    }
+
+    const result = await importOrdersFromCsvBuffer(req.file.buffer);
+    return res.status(201).json(result);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({
+      error: e instanceof Error ? e.message : "Unknown error",
+    });
+  }
+});
 
     const created = await createOrderFromLatLon({
       subtotal,
