@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AddOrderAction } from "../components/AddOrderAction";
 import { AddOrderModal } from "../components/ManualOrderModal";
 import { CVSUploadAction } from "../components/CVSUploadAction";
+import { DataTable } from "../components/DataTable"
 import type { CreateOrderDto } from "../types/order";
 import "../styles/OrdersPage.css";
 import "../styles/AddOrderModal.css";
@@ -57,7 +58,9 @@ export function OrdersPage() {
                     }}
                 />    
 
-                {/* Orders Table */}
+                <div className="pageOrderTable">
+                    <DataTable />
+                </div>
                 {/* <div className="pageOrderTable"> <OrdersTable />  </div>  */}
             </div>
         </>
