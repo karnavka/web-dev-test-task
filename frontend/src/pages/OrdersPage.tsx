@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AddOrderAction } from "../components/AddOrderAction";
 import { AddOrderModal } from "../components/ManualOrderModal";
+import { CVSUploadAction } from "../components/CVSUploadAction";
 import type { CreateOrderDto } from "../types/order";
 import "../styles/OrdersPage.css";
 import "../styles/AddOrderModal.css";
@@ -48,6 +49,13 @@ export function OrdersPage() {
                     onCreate={handleCreate}
                     submitting={isSubmitting}
                 />
+
+                {/*File Uploader*/}
+                <CVSUploadAction
+                    onFileSelect={(file) => {
+                        console.log("Selected file: ", file)
+                    }}
+                />    
 
                 {/* Orders Table */}
                 {/* <div className="pageOrderTable"> <OrdersTable />  </div>  */}
