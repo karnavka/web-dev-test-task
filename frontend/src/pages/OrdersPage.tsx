@@ -27,7 +27,7 @@ export function OrdersPage() {
             const created = await createOrder(values);
             msgApi.success("Order created");
             setIsCreateModalOpen(false);
-            // тут має бути оновлення таблиці
+            handleRefresh();
         } catch (e: unknown) {
             msgApi.error(getErrorMessage(e));
         } finally {
