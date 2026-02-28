@@ -92,6 +92,76 @@ const mockData: Order[] = [
     tax: 17,
     total: 147,
   },
+  {
+    id: 3,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
+  {
+    id: 4,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
+  {
+    id: 5,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
+  {
+    id: 6,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
+  {
+    id: 7,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
+  {
+    id: 8,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
+  {
+    id: 9,
+    longitude: -74.86718664,
+    latitude: 43.01246326,
+    country: "New York",
+    date: parseBackendDate("2025-11-03 10:17:05"),
+    subtotal: 130,
+    tax: 17,
+    total: 147,
+  },
 ]
 
 export function DataTable() {
@@ -99,7 +169,7 @@ export function DataTable() {
     <Table
       columns={columns}
       dataSource={mockData}
-      pagination={{ pageSize: 5 }}
+      pagination={{ pageSize: 7 }}
       rowKey="id"
     />
   )
