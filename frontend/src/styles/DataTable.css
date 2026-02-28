@@ -1,9 +1,9 @@
 .pageOrderTable {
     background: #ffffff;
     border-radius: 15px;
-    margin: 30px auto;
     width: 70%;
     overflow-x: auto;
+    justify-self: center;
 }
 
 .pageOrderTable .antd-table {

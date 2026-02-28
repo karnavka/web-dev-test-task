@@ -108,11 +108,10 @@
 .dataTableButton {
   margin-bottom: 8px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .tableContainer {
-  background: #fff;
   border-radius: 15px;
   overflow-x: auto;
 }
