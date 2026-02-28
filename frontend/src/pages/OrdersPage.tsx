@@ -72,7 +72,7 @@ export function OrdersPage() {
                 />
 
                 {/*File Uploader*/}
-                <CVSUploadAction onFileSelect={handleCsvImport} />
+                <CVSUploadAction onFileSelect={handleRefresh} />
                 <DataTable refreshKey={refreshKey} />
             </div>
         </>

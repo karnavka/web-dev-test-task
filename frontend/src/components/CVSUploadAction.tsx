@@ -6,7 +6,7 @@ import "../styles/CVSUploadAction.css";
 const { Dragger } = Upload
 
 type CsvImportProps = {
-  onFileSelect: (file: File) => void
+  onFileSelect: () => void
 }
 
 export function CVSUploadAction({ onFileSelect }: CsvImportProps) {
@@ -29,7 +29,7 @@ export function CVSUploadAction({ onFileSelect }: CsvImportProps) {
 
         message.success("File uploaded successfully")
 
-        onFileSelect(file)
+        onFileSelect()
 
     } catch (error) {
       message.error("Upload failed")
