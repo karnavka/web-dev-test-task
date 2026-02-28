@@ -1,177 +1,75 @@
 import { Table } from "antd"
 import type { ColumnsType } from "antd/es/table"
 import "../styles/DataTable.css";
+import { useEffect, useState } from "react";
 
 type Order = {
   id: number
-  longitude: number
-  latitude: number
-  country: string
-  date: number
   subtotal: number
-  tax: number
-  total: number
+  tax_amount: number
+  total_amount: number
+  county_name: string
+  city_name: string
 }
 
 const columns: ColumnsType<Order> = [
   {
     title: "Order ID",
     dataIndex: "id",
-    key: "id",
     sorter: (a, b) => a.id - b.id,
   },
   {
-    title: "Longitude",
-    dataIndex: "longitude",
-    key: "longitude",
+    title: "County",
+    dataIndex: "county_name",
   },
   {
-    title: "Latitude",
-    dataIndex: "latitude",
-    key: "latitude",
-  },
-  {
-    title: "Country",
-    dataIndex: "country",
-    key: "country",
-    filters: [
-      { text: "USA", value: "USA" },
-      { text: "Canada", value: "Canada" },
-    ],
-    onFilter: (value, record) => record.country === value,
-  },
-  {
-  title: "Date",
-  dataIndex: "date",
-  key: "date",
-  sorter: (a, b) => a.date - b.date,
-  render: (value: number) =>
-    new Date(value).toLocaleString(),
+    title: "City",
+    dataIndex: "city_name",
   },
   {
     title: "Subtotal",
     dataIndex: "subtotal",
-    key: "subtotal",
     sorter: (a, b) => a.subtotal - b.subtotal,
   },
   {
     title: "Tax",
-    dataIndex: "tax",
-    key: "tax",
-    sorter: (a, b) => a.tax - b.tax,
+    dataIndex: "tax_amount",
+    sorter: (a, b) => a.tax_amount - b.tax_amount,
   },
   {
     title: "Total",
-    dataIndex: "total",
-    key: "total",
-    sorter: (a, b) => a.total - b.total,
-  },
-]
-
-function parseBackendDate(date: string): number {
-  return new Date(date.replace(" ", "T")).getTime()
-}
-
-const mockData: Order[] = [
-  {
-    id: 1,
-    longitude: -78.86718664,
-    latitude: 42.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-04 10:17:05"),
-    subtotal: 120,
-    tax: 18,
-
-    total: 138,
-  },
-  {
-    id: 2,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 3,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 4,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 5,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 6,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 7,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 8,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
-  },
-  {
-    id: 9,
-    longitude: -74.86718664,
-    latitude: 43.01246326,
-    country: "New York",
-    date: parseBackendDate("2025-11-03 10:17:05"),
-    subtotal: 130,
-    tax: 17,
-    total: 147,
+    dataIndex: "total_amount",
+    sorter: (a, b) => a.total_amount - b.total_amount,
   },
 ]
 
 export function DataTable() {
+  const [orders, setOrders] = useState<Order[]>([])
+  const [loading, setLoading] = useState(false)
+  
+  useEffect(() => {
+    async function fetchOrders() {
+      try {
+        setLoading(true)
+        const res = await fetch("http://localhost:3000/orders")
+        const data = await res.json()
+        setOrders(data)
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchOrders()
+  }, [])
+
+
   return (
     <div className="pageOrderTable">
     <Table
       columns={columns}
-      dataSource={mockData}
+      dataSource={orders}
       pagination={{ pageSize: 7 }}
       rowKey="id"
     />

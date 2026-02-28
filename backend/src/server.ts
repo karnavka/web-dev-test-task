@@ -2,15 +2,17 @@
 import express from "express";
 import { getCountyCityByLatLonNY } from "./services/coordLookup";
 import { createOrderFromLatLon } from "./services/orders.service";
+import dotenv from "dotenv";
 import { initDb } from "./db/database";
 import { pool } from "./db/database";
-import dotenv from "dotenv";
+import cors from "cors"
 import { getAllOrders } from "./services/orders.service";
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/health", (_req, res) => {
   console.log("HEALTH ROUTE HIT");
