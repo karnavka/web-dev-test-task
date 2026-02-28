@@ -1,7 +1,7 @@
 import express from "express";
 import { pool } from "./database";
 import { getCountyCityByLatLonNY } from "./services/coordLookup";
-import { get } from "node:http";
+import { initDb } from "./database";
 
 const app = express();
 
@@ -21,6 +21,7 @@ app.listen(PORT, async () => {
   try {
     const result = await getCountyCityByLatLonNY(43.306126, -74.887929);
     console.log(result);
+    initDb();
   } catch (err) {
     console.error(err);
   }
