@@ -1,0 +1,89 @@
+county,city,combined_rate,reporting_code,includes_mctd,effective_date,source_url,notes,rate_percent
+New York State only,,0.04,0021,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,4
+Albany,,0.08,0181,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Allegany,,0.085,0221,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8½
+Broome,,0.08,0321,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Cattaraugus,,0.08,0481,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Cattaraugus,Olean,0.08,0441,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Cattaraugus,Salamanca,0.08,0431,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Cayuga,,0.08,0511,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Cayuga,Auburn,0.08,0561,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Chautauqua,,0.08,0651,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Chemung,,0.08,0711,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Chenango,,0.08,0861,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Chenango,Norwich,0.08,0831,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Clinton,,0.08,0921,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Columbia,,0.08,1021,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Cortland,,0.08,1131,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Delaware,,0.08,1221,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Dutchess,,0.08125,1311,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Includes MCTD,8⅛
+Erie,,0.0875,1451,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8¾
+Essex,,0.08,1521,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Franklin,,0.08,1621,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Fulton,,0.08,1791,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Fulton,Gloversville,0.08,1741,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Fulton,Johnstown,0.08,1751,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Genesee,,0.08,1811,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Greene,,0.08,1911,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Hamilton,,0.08,2011,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Herkimer,,0.0825,2121,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8¼
+Jefferson,,0.08,2221,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Lewis,,0.08,2321,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Livingston,,0.08,2411,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Madison,,0.08,2511,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Madison,Oneida,0.08,2541,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override (Oneida city),8
+Monroe,,0.08,2611,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Montgomery,,0.08,2781,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Nassau,,0.08625,2811,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Includes MCTD,8⅝
+New York City,New York,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,NYC combined rate,8⅞
+New York City, ,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,NYC combined rate,8⅞
+Niagara,,0.08,2911,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Oneida,,0.0875,3010,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8¾
+Oneida,Rome,0.0875,3015,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8¾
+Oneida,Utica,0.0875,3018,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8¾
+Onondaga,,0.08,3121,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Ontario,,0.075,3211,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,7½
+Orange,,0.08125,3321,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Includes MCTD,8⅛
+Orleans,,0.08,3481,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Oswego,,0.08,3501,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Oswego,Oswego,0.08,3561,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Otsego,,0.08,3621,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Putnam,,0.08375,3731,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Includes MCTD,8⅜
+Rensselaer,,0.08,3881,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Rockland,,0.08375,3921,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Includes MCTD,8⅜
+St. Lawrence,,0.08,4091,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+St. Lawrence,Ogdensburg,0.08,4012,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Saratoga,,0.07,4111,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),7
+Saratoga,Saratoga Springs,0.07,4131,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,7
+Schenectady,,0.08,4241,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Schoharie,,0.08,4321,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Schuyler,,0.08,4411,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Seneca,,0.08,4511,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Steuben,,0.08,4691,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Suffolk,,0.0875,4711,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Includes MCTD,8¾
+Sullivan,,0.08,4821,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Tioga,,0.08,4921,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Tompkins,,0.08,5081,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),8
+Tompkins,Ithaca,0.08,5021,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,8
+Ulster,,0.08,5111,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Warren,,0.07,5281,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities),7
+Warren,Glens Falls,0.07,5211,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override,7
+Washington,,0.07,5311,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,7
+Wayne,,0.08,5421,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Westchester,,0.08375,5581,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,County default (except listed cities) + includes MCTD,8⅜
+Westchester,Mount Vernon,0.08375,5521,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override + includes MCTD,8⅜
+Westchester,New Rochelle,0.08375,6861,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override + includes MCTD,8⅜
+Westchester,White Plains,0.08375,6513,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override + includes MCTD,8⅜
+Westchester,Yonkers,0.08875,6511,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,City override + includes MCTD,8⅞
+Wyoming,,0.08,5621,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Yates,,0.08,5721,False,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,,8
+Bronx,New York,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Bronx,,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Kings,New York,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Kings,,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+New York,New York,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+New York,,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Queens,New York,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Queens,,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Richmond,New York,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞
+Richmond,,0.08875,8081,True,2025-03-01,https://www.tax.ny.gov/pdf/publications/sales/pub718.pdf,Generated from Pub 718 note: see New York City,8⅞

@@ -7,6 +7,7 @@ import { initDb } from "./db/database";
 import dotenv from "dotenv";
 import { getAllOrders } from "./services/orders.service";
 import { importOrdersFromCsvBuffer } from "./services/ordersCsv.service";
+import { pool } from "./database";
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -42,8 +43,22 @@ app.post("/orders", async (req, res) => {
         error: "Expected { subtotal:number, latitude:number, longitude:number }",
       });
     }
+    const created = await createOrderFromLatLon({
+      subtotal,
+      latitude,
+      longitude,
+    });
 
-    app.post("/orders/import-csv", upload.single("file"), async (req, res) => {
+    return res.status(201).json(created);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({
+      error: e instanceof Error ? e.message : "Unknown error",
+    });
+  }
+});
+
+   app.post("/orders/import-csv", upload.single("file"), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -61,13 +76,27 @@ app.post("/orders", async (req, res) => {
   }
 });
 
-    const created = await createOrderFromLatLon({
-      subtotal,
-      latitude,
-      longitude,
-    });
 
-    return res.status(201).json(created);
+//ТИМЧАСОВИЙ МЕТОД
+app.get("/tax-rates", async (_req, res) => {
+  try {
+    const result = await pool.query(
+      `
+      SELECT
+        id_tax,
+        county_name,
+        city_name,
+        state_rate,
+        county_rate,
+        city_rate,
+        special_rate,
+        composite_rate
+      FROM tax_rates
+      ORDER BY county_name, city_name
+      `
+    );
+
+    return res.json(result.rows);
   } catch (e) {
     console.error(e);
     return res.status(500).json({
