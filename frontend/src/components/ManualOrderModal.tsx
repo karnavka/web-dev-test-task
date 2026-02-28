@@ -1,6 +1,13 @@
 import { Modal, Form, InputNumber } from "antd";
 import type { CreateOrderDto } from "../types/order";
 
+const NY_BOUNDS = {
+    latMin: 40.49,
+    latMax: 45.01,
+    lonMin: -79.76,
+    lonMax: -71.85,
+} as const;
+
 type AddOrderModalProps = {
     open: boolean;
     onClose: () => void;
@@ -12,13 +19,14 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
     const [form] = Form.useForm<CreateOrderDto>();
 
     const handleSubmit = async () => {
-        try {
-            const values = await form.validateFields();
-            await onCreate(values);
-            form.resetFields();
-        } catch {
-            // validation errors
-        }
+        const values = await form.validateFields();
+        await onCreate(values);
+        form.resetFields()
+    };
+
+    const handleCancel = () => {
+        form.resetFields();
+        onClose();
     };
 
     return (
@@ -26,7 +34,7 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
             className="orderModal"
             title="Create Order"
             open={open}
-            onCancel={onClose}
+            onCancel={handleCancel}
             onOk={handleSubmit}
             okText="Create order"
             confirmLoading={submitting}
@@ -38,7 +46,12 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
                     name="latitude"
                     rules={[
                         { required: true, message: "Latitude is required" },
-                        { type: "number", min: -90, max: 90, message: "Must be between -90 and 90" },
+                        {
+                            type: "number",
+                            min: NY_BOUNDS.latMin,
+                            max: NY_BOUNDS.latMax,
+                            message: `Must be within NY approx. (${NY_BOUNDS.latMin}…${NY_BOUNDS.latMax})`,
+                        },       
                     ]}
                 >
                     <InputNumber
@@ -55,7 +68,12 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
                     name="longitude"
                     rules={[
                         { required: true, message: "Longitude is required" },
-                        { type: "number", min: -180, max: 180, message: "Must be between -180 and 180" },
+                        {
+                            type: "number",
+                            min: NY_BOUNDS.lonMin,
+                            max: NY_BOUNDS.lonMax,
+                            message: `Must be within NY approx. (${NY_BOUNDS.lonMin}…${NY_BOUNDS.lonMax})`,
+                        },
                     ]}
                     >
                     <InputNumber
@@ -72,7 +90,12 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
                     name="subtotal"
                     rules={[
                         { required: true, message: "Subtotal is required" },
-                        { type: "number", min: 0, message: "Must be 0 or greater" },
+                        {
+                            type: "number",
+                            min: 0,
+                            max: 1_000_000,
+                            message: "Must be between 0 and 1,000,000",
+                        },
                     ]}
                     >
                     <InputNumber
