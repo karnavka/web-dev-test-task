@@ -33,7 +33,6 @@ export async function getCountyCityByLatLonNY(lat: number, lon: number, signal?:
     const county = (geos["Counties"]?.[0]?.NAME as string | undefined)?.trim();
     if (!county) throw new Error("County not found");
 
-    // Для “city” краще брати Incorporated Places (якщо є), інакше county subdivision (borough/town)
     const city =
         ((geos["Incorporated Places"]?.[0]?.NAME as string | undefined)?.trim() ??
             (geos["County Subdivisions"]?.[0]?.NAME as string | undefined)?.trim() ??
