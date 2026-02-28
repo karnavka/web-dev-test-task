@@ -11,6 +11,7 @@ import { createOrder } from "../services/orders";
 
 import "../styles/OrdersPage.css";
 import "../styles/AddOrderModal.css";
+import { Button } from "antd";
 
 
 export function OrdersPage() {
@@ -45,6 +46,23 @@ export function OrdersPage() {
         handleRefresh();
     };
 
+    const handleClearOrders = async () => {
+    if (!confirm("Are you sure you want to clear all orders?")) return;
+
+    try {
+      const response = await fetch("http://localhost:3000/orders", {
+        method: "DELETE",
+      });
+
+      if (!response.ok) throw new Error("Failed to clear orders");
+
+      message.success("All orders cleared");
+      handleRefresh();
+    } catch (err) {
+      message.error("Failed to clear orders");
+    }
+  };
+
     return (
         <>
             {contextHolder}
@@ -73,7 +91,19 @@ export function OrdersPage() {
 
                 {/*File Uploader*/}
                 <CVSUploadAction onFileSelect={handleRefresh} />
-                <DataTable refreshKey={refreshKey} />
+
+                <div className="dataTableWrapper">
+                    <div className="dataTableButton">
+                        <Button danger onClick={handleClearOrders}>
+                            Clear All Orders
+                        </Button>
+                    </div>
+
+                    <div className="tableContainer">
+                        <DataTable refreshKey={refreshKey} />
+                    </div>
+                </div>
+
             </div>
         </>
     );

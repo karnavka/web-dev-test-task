@@ -99,3 +99,20 @@
     outline: 3px solid var(--color-primary-hover);
     outline-offset: 3px;
 }
+
+.dataTableWrapper {
+  width: 70%;
+  margin: 30px auto;
+}
+
+.dataTableButton {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.tableContainer {
+  background: #fff;
+  border-radius: 15px;
+  overflow-x: auto;
+}

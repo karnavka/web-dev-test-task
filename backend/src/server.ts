@@ -19,6 +19,18 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.delete("/orders", async (_req, res) => {
+  try {
+    await pool.query("DELETE FROM orders");
+    return res.status(200).json({ message: "All orders cleared" });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({
+      error: e instanceof Error ? e.message : "Unknown error",
+    });
+  }
+});
+
 app.get("/health", (_req, res) => {
   console.log("HEALTH ROUTE HIT");
   return res.send("OK");
