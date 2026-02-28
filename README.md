@@ -1,20 +1,27 @@
 # web-dev-test-task
 Тестове завдання на хакатон "INT20h" з напрямку web команди "Видри"
 °❀⋆.ೃ࿔*:･°❀⋆.ೃ࿔*:･
+
 ЯК ЗАПУСКАТИ: ദ്ദി◝ ⩊ ◜.ᐟ
 
 ִ ࣪𖤐 Backend:ִ ࣪𖤐
 
-cd backend 
-npm install 
+cd backend
+
+npm install
+
 npm run seed:taxes
+
 npm run build
+
 npm start
 
 ִ ࣪𖤐 Frontend:ִ ࣪𖤐
 
 cd frontend 
+
 npm install 
+
 npm run dev
 
 
