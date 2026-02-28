@@ -1,7 +1,6 @@
 import { InboxOutlined } from "@ant-design/icons"
 import type { UploadProps } from "antd"
 import { Upload, message } from "antd"
-
 import "../styles/CVSUploadAction.css";
 
 const { Dragger } = Upload
@@ -14,18 +13,29 @@ export function CVSUploadAction({ onFileSelect }: CsvImportProps) {
   const props: UploadProps = {
     multiple: false,
 
-    beforeUpload: (file) => {
-      const isCsv = file.type === "text/csv"
+    beforeUpload: async (file) => {
+      try {
+        const formData = new FormData()
+        formData.append("file", file)
 
-      if (!isCsv) {
-        message.error("Only CSV files are allowed")
-        return Upload.LIST_IGNORE
-      }
+        const response = await fetch("http://localhost:3000/upload", {
+          method: "POST",
+          body: formData,
+        })
 
-      onFileSelect(file)
+        if (!response.ok) {
+          throw new Error("Upload failed")
+        }
 
+        message.success("File uploaded successfully")
+
+        onFileSelect(file)
+
+    } catch (error) {
+      message.error("Upload failed")
+    }
       return false
-    },
+    } 
   }
 
   return (

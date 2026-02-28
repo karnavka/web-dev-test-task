@@ -3,15 +3,17 @@ import express from "express";
 import multer from "multer";
 import { getCountyCityByLatLonNY } from "./services/coordLookup";
 import { createOrderFromLatLon } from "./services/orders.service";
-import { initDb } from "./db/database";
 import dotenv from "dotenv";
+import { initDb } from "./db/database";
+import { pool } from "./db/database";
+import cors from "cors"
 import { getAllOrders } from "./services/orders.service";
 import { importOrdersFromCsvBuffer } from "./services/ordersCsv.service";
 import { pool } from "./database";
 dotenv.config();
 const app = express();
 app.use(express.json());
-const upload = multer({ storage: multer.memoryStorage() });
+app.use(cors());
 
 app.get("/health", (_req, res) => {
   console.log("HEALTH ROUTE HIT");

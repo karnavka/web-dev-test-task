@@ -21,7 +21,7 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
     const handleSubmit = async () => {
         const values = await form.validateFields();
         await onCreate(values);
-        form.resetFields()
+        form.resetFields();
     };
 
     const handleCancel = () => {
@@ -44,14 +44,15 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
                     className="orderModal__item"
                     label="Latitude"
                     name="latitude"
+                    validateTrigger={["onChange", "onBlur"]}
                     rules={[
                         { required: true, message: "Latitude is required" },
                         {
-                            type: "number",
-                            min: NY_BOUNDS.latMin,
-                            max: NY_BOUNDS.latMax,
-                            message: `Must be within NY approx. (${NY_BOUNDS.latMin}…${NY_BOUNDS.latMax})`,
-                        },       
+                        type: "number",
+                        min: NY_BOUNDS.latMin,
+                        max: NY_BOUNDS.latMax,
+                        message: `Must be within NY approx. (${NY_BOUNDS.latMin}…${NY_BOUNDS.latMax})`,
+                        },
                     ]}
                 >
                     <InputNumber
@@ -66,16 +67,17 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
                     className="orderModal__item"
                     label="Longitude"
                     name="longitude"
+                    validateTrigger={["onChange", "onBlur"]}
                     rules={[
                         { required: true, message: "Longitude is required" },
                         {
-                            type: "number",
-                            min: NY_BOUNDS.lonMin,
-                            max: NY_BOUNDS.lonMax,
-                            message: `Must be within NY approx. (${NY_BOUNDS.lonMin}…${NY_BOUNDS.lonMax})`,
+                        type: "number",
+                        min: NY_BOUNDS.lonMin,
+                        max: NY_BOUNDS.lonMax,
+                        message: `Must be within NY approx. (${NY_BOUNDS.lonMin}…${NY_BOUNDS.lonMax})`,
                         },
                     ]}
-                    >
+                >
                     <InputNumber
                         className="orderModal__input"
                         step={0.000001}
@@ -88,23 +90,13 @@ export function AddOrderModal({ open, onClose, onCreate, submitting = false }: A
                     className="orderModal__item"
                     label="Subtotal"
                     name="subtotal"
+                    validateTrigger={["onChange", "onBlur"]}
                     rules={[
                         { required: true, message: "Subtotal is required" },
-                        {
-                            type: "number",
-                            min: 0,
-                            max: 1_000_000,
-                            message: "Must be between 0 and 1,000,000",
-                        },
+                        { type: "number", min: 0, max: 1_000_000, message: "Must be between 0 and 1,000,000" },
                     ]}
-                    >
-                    <InputNumber
-                        className="orderModal__input"
-                        min={0}
-                        step={0.01}
-                        precision={2}
-                        placeholder="e.g. 157.00"
-                    />
+                >
+                    <InputNumber className="orderModal__input" step={0.01} precision={2} placeholder="e.g. 157.00" />
                 </Form.Item>
             </Form>
         </Modal>
