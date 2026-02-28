@@ -1,0 +1,9 @@
+.pageOrderTable {
+    margin: 30px;
+    width: 70%;
+    justify-self: center;
+}
+
+.pageOrderTable .antd-table {
+    border-radius: 15px;
+}

@@ -58,9 +58,9 @@ export function OrdersPage() {
                     }}
                 />    
 
-                <div className="pageOrderTable">
-                    <DataTable />
-                </div>
+                
+                <DataTable />
+                
                 {/* <div className="pageOrderTable"> <OrdersTable />  </div>  */}
             </div>
         </>

@@ -1,5 +1,6 @@
 import { Table } from "antd"
 import type { ColumnsType } from "antd/es/table"
+import "../styles/DataTable.css";
 
 type Order = {
   id: number
@@ -166,11 +167,13 @@ const mockData: Order[] = [
 
 export function DataTable() {
   return (
+    <div className="pageOrderTable">
     <Table
       columns={columns}
       dataSource={mockData}
       pagination={{ pageSize: 7 }}
       rowKey="id"
     />
+    </div>
   )
 }
