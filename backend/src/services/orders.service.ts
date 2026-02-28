@@ -11,77 +11,105 @@ export type CreateOrderInput = {
 function round(x: number) {
     return Math.round(x * 100) / 100;
 }
-export async function createOrderFromLatLon(input: CreateOrderInput) {
 
-    const geo = await getCountyCityByLatLonNY(input.latitude, input.longitude, input.signal);
-    const county = geo.county.replace(/\s+County$/i, "").trim();
-    const city = geo.city
-        .replace(/\s+(city|village|town|borough)$/i, "")
-        .trim();
-    const tax = await findTaxRateByCountyCity(county, city);
-    const composite = Number(tax.composite_rate);
-    const taxAmount = round(input.subtotal * composite);
-    const totalAmount = round(input.subtotal + taxAmount);
-
-    const orderId = (await insertedRow(input, tax, taxAmount, totalAmount)).id;
-    const row = await getOrderWithTaxById(orderId);
-    return {
-        id: row.id,
-        subtotal: Number(row.subtotal),
-        tax_amount: Number(row.tax_amount),
-        total_amount: Number(row.total_amount),
-        composite_rate: Number(row.composite_rate),
-        jurisdictions: {
-            county: row.county_name,
-            city: row.city_name ?? null,
-        },
-        breakdown: {
-            state_rate: Number(row.state_rate),
-            county_rate: Number(row.county_rate),
-            city_rate: Number(row.city_rate),
-            special_rate: Number(row.special_rate),
-        },
-    };
+function normalizeCountyName(name: string): string {
+  return name.replace(/\s+County$/i, "").trim();
 }
 
-export async function getOrderWithTaxById(orderId: number) {
+function normalizeCityName(name: string): string {
+  return name.replace(/\s+town$/i, "").trim();
+}
 
-    const result = await pool.query(
-        `
+export async function createOrderFromLatLon(input: CreateOrderInput) {
+  const { subtotal, latitude, longitude } = input;
+
+  if (!Number.isFinite(subtotal) || subtotal < 0) {
+    throw new Error("Subtotal must be a non-negative number");
+  }
+
+  const location = await getCountyCityByLatLonNY(latitude, longitude);
+
+  const county = normalizeCountyName(location.county);
+  const city = normalizeCityName(location.city);
+
+  let taxRateResult = await pool.query(
+    `
+    SELECT *
+    FROM tax_rates
+    WHERE county_name = $1
+      AND city_name = $2
+    LIMIT 1
+    `,
+    [county, city]
+  );
+
+  if (taxRateResult.rows.length === 0) {
+    taxRateResult = await pool.query(
+      `
+      SELECT *
+      FROM tax_rates
+      WHERE county_name = $1
+        AND city_name = ''
+      LIMIT 1
+      `,
+      [county]
+    );
+  }
+
+  if (taxRateResult.rows.length === 0) {
+    throw new Error(`Tax rate not found for county="${county}", city="${city}"`);
+  }
+
+  const taxRate = taxRateResult.rows[0];
+
+  const rate =
+    taxRate.combined_rate != null
+      ? Number(taxRate.combined_rate)
+      : Number(taxRate.composite_rate);
+
+  const taxAmount = Number((subtotal * rate).toFixed(2));
+  const totalAmount = Number((subtotal + taxAmount).toFixed(2));
+
+  const insertResult = await pool.query(
+    `
+    INSERT INTO orders (
+      subtotal,
+      tax_rate_id,
+      tax_amount,
+      total_amount
+    )
+    VALUES ($1, $2, $3, $4)
+    RETURNING *
+    `,
+    [subtotal, taxRate.id_tax, taxAmount, totalAmount]
+  );
+
+  return {
+    order: insertResult.rows[0],
+    location: {
+      county,
+      city,
+    },
+    taxRate,
+  };
+}
+
+export async function getAllOrders() {
+  const result = await pool.query(
+    `
     SELECT
       o.id,
       o.subtotal,
       o.tax_amount,
       o.total_amount,
       t.county_name,
-      t.city_name,
-      t.state_rate,
-      t.county_rate,
-      t.city_rate,
-      t.special_rate,
-      t.composite_rate
+      t.city_name
     FROM orders o
-    JOIN tax_rates t ON t.id_tax = o.tax_rate_id
-    WHERE o.id = $1
-    `,
-        [orderId]
-    );
+    JOIN tax_rates t
+      ON o.tax_rate_id = t.id_tax
+    ORDER BY o.id DESC
+    `
+  );
 
-    if (result.rows.length === 0) {
-        throw new Error("Order not found");
-    }
-
-    return result.rows[0];
+  return result.rows;
 }
- export async function insertedRow(input: CreateOrderInput, tax: TaxRateRow, taxAmount: number, totalAmount: number) {
-     const inserted = await pool.query<{ id: number }>(
-        `
-    INSERT INTO orders (subtotal, tax_rate_id, tax_amount, total_amount)
-    VALUES ($1, $2, $3, $4)
-    RETURNING id
-    `,
-        [input.subtotal, tax.id, taxAmount, totalAmount]
-    );
-    return inserted.rows[0];
- }
-
