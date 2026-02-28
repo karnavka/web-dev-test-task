@@ -2,6 +2,8 @@ import { InboxOutlined } from "@ant-design/icons"
 import type { UploadProps } from "antd"
 import { Upload, message } from "antd"
 
+import "../styles/CVSUploadAction.css";
+
 const { Dragger } = Upload
 
 type CsvImportProps = {
@@ -27,7 +29,8 @@ export function CVSUploadAction({ onFileSelect }: CsvImportProps) {
   }
 
   return (
-    <Dragger {...props} style={{ padding: 20 }}>
+    <div className="csvUpload">
+    <Dragger {...props}>
       <p className="ant-upload-drag-icon">
         <InboxOutlined />
       </p>
@@ -38,5 +41,6 @@ export function CVSUploadAction({ onFileSelect }: CsvImportProps) {
         Only .csv format is supported
       </p>
     </Dragger>
+    </div>
   )
 }
