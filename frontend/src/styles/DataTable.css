@@ -1,9 +1,23 @@
 .pageOrderTable {
-    margin: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    margin: 30px auto;
     width: 70%;
-    justify-self: center;
+    overflow-x: auto;
 }
 
 .pageOrderTable .antd-table {
-    border-radius: 15px;
+    overflow: hidden;
+}
+
+.pageOrderTable .antd-table-container .ant-table-content {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+}
+
+.pageOrderTable .ant-table-cell {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

@@ -81,6 +81,7 @@ const mockData: Order[] = [
     date: parseBackendDate("2025-11-04 10:17:05"),
     subtotal: 120,
     tax: 18,
+
     total: 138,
   },
   {
